@@ -357,7 +357,7 @@ footer a{color:var(--teal)}
 /* ====================================================================
    設定區：貼上你的 Google Apps Script 網頁應用程式網址（見 Code.gs）
    ==================================================================== */
-const ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbz_sUGdBIYRfWEAjuFoX5u0ME8SJ2wwuIzmIDanDXF8wV7QbqtQ-6yemaes3ZwyAhjEcA/exec";
 /* ==================================================================== */
 
 const form = document.getElementById('form');
@@ -442,7 +442,7 @@ form.addEventListener('submit', async e=>{
   const payload=collect();
   payload.submittedAt=new Date().toISOString();
 
-  if(!ENDPOINT || ENDPOINT.indexOf('https://script.google.com/macros/s/AKfycbw0fhtj_ePYuzZ8z7I3-Y4H4bCIv-Ir_H3NmBMBskooAouYRpR5Db4tYC49oYIDYzhuow/exec')===0){
+  if(!ENDPOINT || ENDPOINT.indexOf('PASTE_YOUR')===0){
     console.log('【測試模式】未設定 ENDPOINT，以下為將送出的資料：', payload);
     alert('目前為測試模式（尚未設定 Google 試算表連結）。\n資料已顯示在瀏覽器主控台，未實際送出。');
     sendBtn.disabled=false; sendBtn.textContent='送出調查表';
