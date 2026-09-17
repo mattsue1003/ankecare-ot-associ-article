@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>創新照顧 Ankecare 專欄｜撰稿意願調查 - 社團法人臺灣職能治療學會</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#028090; --teal-dark:#016270; --ink:#12343B; --amber:#F4A93C;
+  --bg:#F4F7F8; --card:#FFFFFF; --line:#DDE5E8; --muted:#5C7077; --err:#C0392B;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.7; font-size:17px;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:780px;margin:0 auto;padding:0 16px 64px}
+
+/* ---------- Header ---------- */
+header.hero{
+  background:linear-gradient(135deg,var(--ink) 0%,var(--teal-dark) 55%,var(--teal) 100%);
+  color:#fff;padding:40px 0 34px;margin-bottom:-28px;
+}
+.hero .wrap{padding-bottom:0}
+.badge{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+  padding:4px 12px;border-radius:99px;font-size:13px;letter-spacing:.5px;margin-bottom:14px}
+.hero h1{font-size:27px;line-height:1.35;margin:0 0 10px;font-weight:700}
+.hero p{margin:0;font-size:15px;opacity:.92}
+.hero .accent{height:4px;width:64px;background:var(--amber);border-radius:2px;margin:18px 0 0}
+
+/* ---------- Cards ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;margin:22px 0;box-shadow:0 2px 10px rgba(18,52,59,.05)}
+.intro{font-size:15.5px;color:var(--muted)}
+.intro strong{color:var(--ink)}
+.intro ul{padding-left:20px;margin:10px 0 0}
+.intro li{margin-bottom:4px}
+
+.sec-head{display:flex;align-items:center;gap:12px;margin:0 0 4px}
+.sec-num{flex:none;width:30px;height:30px;border-radius:8px;background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+.sec-head h2{font-size:19px;margin:0;font-weight:700}
+.sec-sub{font-size:14px;color:var(--muted);margin:2px 0 18px 42px}
+
+/* ---------- Fields ---------- */
+.field{margin-bottom:20px}
+label.q{display:block;font-weight:500;margin-bottom:7px;font-size:16px}
+.req{color:var(--err);margin-left:3px;font-weight:700}
+.hint{display:block;font-size:13.5px;color:var(--muted);font-weight:400;margin-top:3px}
+input[type=text],input[type=email],input[type=tel],input[type=month],select,textarea{
+  width:100%;padding:11px 13px;font-size:16px;font-family:inherit;color:var(--ink);
+  border:1px solid var(--line);border-radius:10px;background:#fff;transition:.15s;
+}
+textarea{min-height:120px;resize:vertical;line-height:1.6}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(2,128,144,.14)}
+.counter{text-align:right;font-size:13px;color:var(--muted);margin-top:4px}
+
+/* choice lists */
+.choices{display:grid;gap:9px}
+.choices.cols{grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.choice{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:10px;
+  padding:11px 13px;cursor:pointer;background:#fff;transition:.15s;font-size:15.5px}
+.choice:hover{border-color:var(--teal);background:#F6FBFC}
+.choice input{margin:4px 0 0;accent-color:var(--teal);width:17px;height:17px;flex:none}
+.choice.sel{border-color:var(--teal);background:#EFF8F9;box-shadow:inset 0 0 0 1px var(--teal)}
+.choice .other-in{margin-top:8px}
+
+.consent{background:#FFF9EE;border:1px solid #F0DDB8;border-radius:10px;padding:14px 16px;font-size:15px}
+.consent .choice{border:none;background:none;padding:0}
+.consent .choice:hover{background:none}
+
+.err-msg{color:var(--err);font-size:14px;margin-top:6px;display:none}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--err)}
+.field.invalid .err-msg{display:block}
+
+/* ---------- Submit ---------- */
+.submit-bar{text-align:center;padding:8px 0 0}
+button.send{
+  background:var(--teal);color:#fff;border:none;border-radius:12px;padding:15px 44px;
+  font-size:18px;font-weight:700;font-family:inherit;cursor:pointer;transition:.15s;
+  box-shadow:0 4px 14px rgba(2,128,144,.28);width:100%;max-width:340px}
+button.send:hover:not(:disabled){background:var(--teal-dark);transform:translateY(-1px)}
+button.send:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.form-note{font-size:13.5px;color:var(--muted);margin-top:12px}
+.draft-note{font-size:13px;color:var(--muted);text-align:center;margin-top:6px}
+
+/* ---------- Done ---------- */
+#done{display:none;text-align:center;padding:44px 24px}
+#done .tick{width:66px;height:66px;border-radius:50%;background:var(--teal);color:#fff;font-size:34px;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+#done h2{margin:0 0 10px;font-size:22px}
+#done p{color:var(--muted);margin:0 auto;max-width:460px}
+#done .again{margin-top:22px;display:inline-block;color:var(--teal);cursor:pointer;
+  border-bottom:1px solid var(--teal);font-size:15px}
+
+footer{text-align:center;font-size:13.5px;color:var(--muted);padding:6px 16px 0}
+footer a{color:var(--teal)}
+
+@media (max-width:520px){
+  body{font-size:16px}
+  .hero h1{font-size:22px}
+  .card{padding:20px 16px}
+  .sec-sub{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">社團法人臺灣職能治療學會</span>
+    <h1>《創新照顧 Ankecare》學會專欄<br>撰稿意願暨主題調查</h1>
+    <p>本會已與侒可傳媒完成洽談，將以學會名義開設專欄，誠摯邀請您一同發聲。</p>
+    <div class="accent"></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<form id="form" novalidate>
+
+  <!-- INTRO -->
+  <div class="card intro">
+    <p><strong>關於這份調查</strong><br>
+    《創新照顧 Ankecare》為國內長照產業重要媒體平台，護理學會、物理治療學會等專業團體皆已設有專欄。本會專欄即將開設，需先盤點會員的撰稿意願與題目，以利排定刊登順序並與編輯部溝通。</p>
+    <ul>
+      <li>填寫時間約 3–5 分鐘，標示 <span class="req">*</span> 為必填。</li>
+      <li>填寫本表不代表最終錄用，本會將彙整後與您聯繫確認主題與交稿時程。</li>
+      <li>若您<strong>已自行投稿</strong>過安可，也請填寫，以利本會盤點。</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="card">
+    <div class="sec-head"><div class="sec-num">1</div><h2>基本資料</h2></div>
+    <div class="sec-sub">供編輯部聯繫與專欄作者署名使用。</div>
+
+    <div class="field" data-req>
+      <label class="q" for="name">姓名<span class="req">*</span></label>
+      <input type="text" id="name" name="name" autocomplete="name" placeholder="王小明">
+      <div class="err-msg">請填寫姓名</div>
+    </div>
+
+    <div class="field" data-req>
+      <label class="q" for="title">職稱<span class="req">*</span>
+        <span class="hint">例：職能治療師、治療長、主任、講師、負責人</span></label>
+      <input type="text" id="title" name="title" placeholder="職能治療師">
+      <div class="err-msg">請填寫職稱</div>
+    </div>
+
+    <div class="field" data-req>
+      <label class="q" for="org">服務單位<span class="req">*</span>
+        <span class="hint">請填寫刊登時希望呈現的正式全名</span></label>
+      <input type="text" id="org" name="org" placeholder="○○醫院職能治療科">
+      <div class="err-msg">請填寫服務單位</div>
+    </div>
+
+    <div class="field">
+      <label class="q">單位屬性<span class="hint">單選，協助本會平衡各場域的議題比例</span></label>
+      <div class="choices cols" data-group="orgType" data-type="radio">
+        <label class="choice"><input type="radio" name="orgType" value="醫院／診所"><span>醫院／診所</span></label>
+        <label class="choice"><input type="radio" name="orgType" value="住宿式長照機構"><span>住宿式長照機構</span></label>
+        <label class="choice"><input type="radio" name="orgType" value="日照中心／社區據點"><span>日照中心／社區據點</span></label>
+        <label class="choice"><input type="radio" name="orgType" value="居家治療所／居家服務"><span>居家治療所／居家服務</span></label>
+        <label class="choice"><input type="radio" name="orgType" value="學校／學術單位"><span>學校／學術單位</span></label>
+        <label class="choice"><input type="radio" name="orgType" value="公部門／公協會"><span>公部門／公協會</span></label>
+        <label class="choice"><input type="radio" name="orgType" value="其他"><span>其他</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="area">主要服務縣市</label>
+      <select id="area" name="area">
+        <option value="">請選擇</option>
+        <option>基隆市</option><option>臺北市</option><option>新北市</option><option>桃園市</option>
+        <option>新竹市</option><option>新竹縣</option><option>苗栗縣</option><option>臺中市</option>
+        <option>彰化縣</option><option>南投縣</option><option>雲林縣</option><option>嘉義市</option>
+        <option>嘉義縣</option><option>臺南市</option><option>高雄市</option><option>屏東縣</option>
+        <option>宜蘭縣</option><option>花蓮縣</option><option>臺東縣</option>
+        <option>澎湖縣</option><option>金門縣</option><option>連江縣</option>
+        <option>跨縣市／全國</option>
+      </select>
+    </div>
+
+    <div class="field" data-req data-email>
+      <label class="q" for="email">聯絡 Email<span class="req">*</span>
+        <span class="hint">後續校稿、刊登通知均以此信箱聯繫</span></label>
+      <input type="email" id="email" name="email" autocomplete="email" placeholder="name@example.com">
+      <div class="err-msg">請填寫正確的 Email</div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="phone">聯絡電話<span class="hint">急件聯繫用，非必填</span></label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="09xx-xxx-xxx">
+    </div>
+
+    <div class="field">
+      <label class="q">學會會員身分</label>
+      <div class="choices cols" data-group="member" data-type="radio">
+        <label class="choice"><input type="radio" name="member" value="是，現為本會會員"><span>是，現為本會會員</span></label>
+        <label class="choice"><input type="radio" name="member" value="否／尚未入會"><span>否／尚未入會</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="card">
+    <div class="sec-head"><div class="sec-num">2</div><h2>撰稿狀態與主題</h2></div>
+    <div class="sec-sub">本次調查的核心，請盡量具體填寫。</div>
+
+    <div class="field" data-req>
+      <label class="q">目前的撰稿狀態<span class="req">*</span></label>
+      <div class="choices" data-group="status" data-type="radio">
+        <label class="choice"><input type="radio" name="status" value="已投稿安可（已刊登或審稿中）"><span>已投稿安可（已刊登或審稿中）</span></label>
+        <label class="choice"><input type="radio" name="status" value="文稿已完成，尚未投稿"><span>文稿已完成，尚未投稿</span></label>
+        <label class="choice"><input type="radio" name="status" value="已有構想，預計撰寫"><span>已有構想，預計撰寫</span></label>
+        <label class="choice"><input type="radio" name="status" value="有意願，但尚無明確題目"><span>有意願，但尚無明確題目（可由學會媒合主題）</span></label>
+      </div>
+      <div class="err-msg">請選擇目前狀態</div>
+    </div>
+
+    <div class="field" data-req>
+      <label class="q" for="topic">預計撰寫的文章主題<span class="req">*</span>
+        <span class="hint">請寫成一句話的暫定標題，例：從居家職能治療看長輩的「不敢出門」</span></label>
+      <input type="text" id="topic" name="topic" placeholder="暫定標題（尚無題目者可填「由學會媒合」）">
+      <div class="err-msg">請填寫主題或填「由學會媒合」</div>
+    </div>
+
+    <div class="field">
+      <label class="q">主題面向<span class="hint">可複選，便於編輯部安排刊登順序與避免撞題</span></label>
+      <div class="choices cols" data-group="domain" data-type="checkbox">
+        <label class="choice"><input type="checkbox" name="domain" value="社區長照／預防延緩失能"><span>社區長照／預防延緩失能</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="居家職能治療／居家復能"><span>居家職能治療／居家復能</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="住宿式機構照顧"><span>住宿式機構照顧</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="失智照顧"><span>失智照顧</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="輔具與居家環境改造"><span>輔具與居家環境改造</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="自立支援／生活重建"><span>自立支援／生活重建</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="照顧科技與 AI 應用"><span>照顧科技與 AI 應用</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="政策、給付與制度"><span>政策、給付與制度</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="高齡就業與社會參與"><span>高齡就業與社會參與</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="兒童／身心障礙職能治療"><span>兒童／身心障礙職能治療</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="國際趨勢"><span>國際趨勢</span></label>
+        <label class="choice"><input type="checkbox" name="domain" value="其他"><span>其他</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q">文章類型</label>
+      <div class="choices cols" data-group="genre" data-type="radio">
+        <label class="choice"><input type="radio" name="genre" value="實務經驗分享"><span>實務經驗分享</span></label>
+        <label class="choice"><input type="radio" name="genre" value="個案故事／照顧現場"><span>個案故事／照顧現場</span></label>
+        <label class="choice"><input type="radio" name="genre" value="政策觀點評論"><span>政策觀點評論</span></label>
+        <label class="choice"><input type="radio" name="genre" value="研究轉譯（把研究寫成白話）"><span>研究轉譯</span></label>
+        <label class="choice"><input type="radio" name="genre" value="國際借鏡"><span>國際借鏡</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="abstract">文章大綱或摘要
+        <span class="hint">100–300 字，寫出想談的問題、切入角度與想帶給讀者的收穫</span></label>
+      <textarea id="abstract" name="abstract" maxlength="600" placeholder="例：許多長輩出院返家後能力仍在，卻因空間與家屬擔心而不再自己做事……本文想從三個居家場景談起……"></textarea>
+      <div class="counter"><span id="abscount">0</span> 字</div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="due">預計可交稿時間</label>
+      <input type="month" id="due" name="due">
+      <span class="hint">安可專欄多為每月固定刊登，本會將依此排程。</span>
+    </div>
+
+    <div class="field">
+      <label class="q">是否曾在媒體／專欄發表文章？</label>
+      <div class="choices cols" data-group="experience" data-type="radio">
+        <label class="choice"><input type="radio" name="experience" value="有"><span>有</span></label>
+        <label class="choice"><input type="radio" name="experience" value="沒有，第一次"><span>沒有，第一次</span></label>
+      </div>
+      <input class="other-in" style="margin-top:9px" type="text" id="portfolio" name="portfolio" placeholder="若有，請貼上代表作品連結（選填）">
+    </div>
+
+    <div class="field">
+      <label class="q">是否需要學會協助？<span class="hint">可複選</span></label>
+      <div class="choices" data-group="support" data-type="checkbox">
+        <label class="choice"><input type="checkbox" name="support" value="需要協助訂題／發想角度"><span>需要協助訂題、發想切入角度</span></label>
+        <label class="choice"><input type="checkbox" name="support" value="需要文稿潤飾與編修"><span>需要文稿潤飾與編修</span></label>
+        <label class="choice"><input type="checkbox" name="support" value="需要撰稿方向說明會／工作坊"><span>希望學會舉辦撰稿說明會或工作坊</span></label>
+        <label class="choice"><input type="checkbox" name="support" value="不需要，可獨立完成"><span>不需要，可獨立完成</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="card">
+    <div class="sec-head"><div class="sec-num">3</div><h2>作者資料與同意事項</h2></div>
+    <div class="sec-sub">安可專欄頁面需刊登作者簡介與照片。</div>
+
+    <div class="field">
+      <label class="q" for="bio">作者簡介
+        <span class="hint">50–100 字，格式參考：現職＋重要經歷（可日後補件）</span></label>
+      <textarea id="bio" name="bio" maxlength="300" style="min-height:90px"
+        placeholder="○○○，○○醫院職能治療師，專長為社區長照與失智照顧，曾參與衛福部……"></textarea>
+      <div class="counter"><span id="biocount">0</span> 字</div>
+    </div>
+
+    <div class="field">
+      <label class="q">個人形象照</label>
+      <div class="choices" data-group="photo" data-type="radio">
+        <label class="choice"><input type="radio" name="photo" value="可提供，將另行以 Email 寄送"><span>可提供，將依通知以 Email 寄送</span></label>
+        <label class="choice"><input type="radio" name="photo" value="需要學會協助或後續再說"><span>尚無合適照片，後續再協調</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="note">其他想說明的事項</label>
+      <textarea id="note" name="note" style="min-height:80px" placeholder="例：希望與同事共同掛名、特定月份不便交稿、想推薦其他適合的作者……"></textarea>
+    </div>
+
+    <div class="field" data-req>
+      <div class="consent">
+        <div class="choices" data-group="consent" data-type="checkbox">
+          <label class="choice"><input type="checkbox" name="consent" value="同意">
+            <span>本人同意以「社團法人臺灣職能治療學會」名義於《創新照顧 Ankecare》刊登文章，並同意學會將本表所填聯絡資料提供予侒可傳媒作刊登聯繫與作者介紹之用。<span class="req">*</span></span></label>
+        </div>
+      </div>
+      <div class="err-msg">須勾選同意才能送出</div>
+    </div>
+  </div>
+
+  <div class="submit-bar">
+    <button class="send" type="submit" id="sendBtn">送出調查表</button>
+    <div class="form-note">送出後可於信箱收到本會後續通知。如需修改，請重新填寫或來信說明。</div>
+    <div class="draft-note" id="draftNote"></div>
+  </div>
+</form>
+
+<div class="card" id="done">
+  <div class="tick">✓</div>
+  <h2>已收到您的填答，感謝參與！</h2>
+  <p>本會將彙整所有題目後排定刊登順序，並以 Email 與您聯繫確認主題與交稿時程。若兩週內未收到通知，歡迎來信詢問。</p>
+  <span class="again" id="againBtn">再填一份</span>
+</div>
+
+<footer>
+  社團法人臺灣職能治療學會 ｜ 專欄合作：《創新照顧 Ankecare》侒可傳媒<br>
+  <a href="https://www.ankecare.com/columnist/list" target="_blank" rel="noopener">查看安可專欄一覽</a>
+</footer>
+
+</div>
+
+<script>
+/* ====================================================================
+   設定區：貼上你的 Google Apps Script 網頁應用程式網址（見 Code.gs）
+   ==================================================================== */
+const ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+/* ==================================================================== */
+
+const form = document.getElementById('form');
+const done = document.getElementById('done');
+const sendBtn = document.getElementById('sendBtn');
+const DRAFT_KEY = 'ot_ankecare_draft_v1';
+
+/* 選項卡片視覺選取 */
+document.querySelectorAll('.choices').forEach(group=>{
+  group.addEventListener('change',()=>{
+    group.querySelectorAll('.choice').forEach(c=>{
+      const i=c.querySelector('input');
+      c.classList.toggle('sel', i && i.checked);
+    });
+  });
+});
+
+/* 字數計算 */
+function bindCount(id,out){
+  const el=document.getElementById(id), o=document.getElementById(out);
+  if(!el||!o) return;
+  const up=()=>o.textContent=el.value.trim().length;
+  el.addEventListener('input',up); up();
+}
+bindCount('abstract','abscount');
+bindCount('bio','biocount');
+
+/* 草稿暫存（僅存在本機瀏覽器） */
+function collect(){
+  const d={};
+  new FormData(form).forEach((v,k)=>{ d[k]=d[k]?d[k]+' / '+v:v; });
+  return d;
+}
+function saveDraft(){
+  try{ localStorage.setItem(DRAFT_KEY, JSON.stringify(collect())); }catch(e){}
+}
+function loadDraft(){
+  try{
+    const raw=localStorage.getItem(DRAFT_KEY); if(!raw) return;
+    const d=JSON.parse(raw);
+    Object.keys(d).forEach(k=>{
+      const els=form.querySelectorAll('[name="'+k+'"]');
+      els.forEach(el=>{
+        if(el.type==='checkbox'||el.type==='radio'){
+          if(String(d[k]).split(' / ').includes(el.value)) el.checked=true;
+        }else{ el.value=d[k]; }
+      });
+    });
+    document.querySelectorAll('.choices').forEach(g=>g.dispatchEvent(new Event('change')));
+    bindCount('abstract','abscount'); bindCount('bio','biocount');
+    document.getElementById('draftNote').textContent='已自動帶入您上次未完成的填答內容。';
+  }catch(e){}
+}
+form.addEventListener('input', saveDraft);
+form.addEventListener('change', saveDraft);
+loadDraft();
+
+/* 驗證 */
+function validate(){
+  let ok=true, first=null;
+  form.querySelectorAll('.field[data-req]').forEach(f=>{
+    let filled=false;
+    const input=f.querySelector('input[type=text],input[type=email],textarea,select');
+    const boxes=f.querySelectorAll('input[type=radio],input[type=checkbox]');
+    if(boxes.length) filled=[...boxes].some(b=>b.checked);
+    else if(input) filled=input.value.trim()!=='';
+    if(filled && f.hasAttribute('data-email')){
+      filled=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+    }
+    f.classList.toggle('invalid',!filled);
+    if(!filled){ ok=false; if(!first) first=f; }
+  });
+  if(first) first.scrollIntoView({behavior:'smooth',block:'center'});
+  return ok;
+}
+
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  if(!validate()) return;
+  sendBtn.disabled=true; sendBtn.textContent='送出中…';
+
+  const payload=collect();
+  payload.submittedAt=new Date().toISOString();
+
+  if(!ENDPOINT || ENDPOINT.indexOf('https://script.google.com/macros/s/AKfycbw0fhtj_ePYuzZ8z7I3-Y4H4bCIv-Ir_H3NmBMBskooAouYRpR5Db4tYC49oYIDYzhuow/exec')===0){
+    console.log('【測試模式】未設定 ENDPOINT，以下為將送出的資料：', payload);
+    alert('目前為測試模式（尚未設定 Google 試算表連結）。\n資料已顯示在瀏覽器主控台，未實際送出。');
+    sendBtn.disabled=false; sendBtn.textContent='送出調查表';
+    return;
+  }
+
+  try{
+    await fetch(ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(payload)
+    });
+    try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
+    form.style.display='none';
+    document.querySelectorAll('.intro').forEach(el=>el.style.display='none');
+    done.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(err){
+    alert('送出失敗，請確認網路連線後再試一次；若持續失敗，請直接來信學會信箱。');
+    sendBtn.disabled=false; sendBtn.textContent='送出調查表';
+  }
+});
+
+document.getElementById('againBtn').addEventListener('click',()=>{
+  form.reset();
+  document.querySelectorAll('.choice').forEach(c=>c.classList.remove('sel'));
+  form.style.display='block'; done.style.display='none';
+  sendBtn.disabled=false; sendBtn.textContent='送出調查表';
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
